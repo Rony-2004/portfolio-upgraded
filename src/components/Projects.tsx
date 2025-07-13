@@ -11,7 +11,6 @@ import img8 from '../assets/8.png';
 
 const Projects = () => {
   const [showAll, setShowAll] = useState(false);
-  const [animateAll, setAnimateAll] = useState(false);
   const [activeMobileOverlay, setActiveMobileOverlay] = useState<number | null>(null);
   const projects = [
     // 1st project
@@ -101,9 +100,8 @@ const Projects = () => {
             <div
               key={index}
               className="group relative bg-gray-900/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700 hover:border-cyan-400 transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-400/20 active:scale-95"
-              onClick={e => {
+              onClick={() => {
                 if (window.innerWidth < 768) {
-                  e.stopPropagation();
                   setActiveMobileOverlay(activeMobileOverlay === index ? null : index);
                 }
               }}
@@ -196,7 +194,6 @@ const Projects = () => {
               className="px-8 py-4 border-2 border-cyan-400 text-cyan-400 rounded-full font-semibold hover:bg-cyan-400 hover:text-gray-900 transition-all duration-300 transform hover:scale-105"
               onClick={() => {
                 setShowAll(true);
-                setTimeout(() => setAnimateAll(true), 50);
               }}
             >
               View All Projects
