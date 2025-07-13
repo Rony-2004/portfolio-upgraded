@@ -121,7 +121,7 @@ const Projects = () => {
                     href={project.liveUrl}
                     className="p-2 bg-cyan-500 rounded-full hover:bg-cyan-400 transition-colors duration-300 focus:ring-4 focus:ring-cyan-400 active:ring-4 active:ring-cyan-400 active:scale-110"
                     target="_blank" rel="noopener noreferrer"
-                    onClick={e => e.stopPropagation()}
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <ExternalLink size={16} className="transition-all duration-200 group-active:scale-125 group-active:text-white" />
                   </a>
@@ -131,7 +131,7 @@ const Projects = () => {
                     href={project.githubUrl}
                     className="p-2 bg-gray-700 rounded-full hover:bg-gray-600 transition-colors duration-300 focus:ring-4 focus:ring-purple-400 active:ring-4 active:ring-purple-400 active:scale-110"
                     target="_blank" rel="noopener noreferrer"
-                    onClick={e => e.stopPropagation()}
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <Github size={16} className="transition-all duration-200 group-active:scale-125 group-active:text-white" />
                   </a>
@@ -139,14 +139,14 @@ const Projects = () => {
               </div>
               {/* Mobile tap overlay */}
               {activeMobileOverlay === index && (
-                <div className="absolute top-4 right-4 z-30 md:hidden animate-fade-in" onClick={e => e.stopPropagation()}>
+                <div className="absolute top-4 right-4 z-30 md:hidden animate-fade-in" onClick={(e) => e.stopPropagation()}>
                   <div className="flex gap-3 p-2 transition-all duration-300">
                     {project.liveUrl && (
                       <a
                         href={project.liveUrl}
                         className="p-2 bg-cyan-500 rounded-full text-white font-semibold hover:bg-cyan-400 focus:ring-4 focus:ring-cyan-400 active:ring-4 active:ring-cyan-400 active:scale-110 shadow-xl transition-all duration-300"
                         target="_blank" rel="noopener noreferrer"
-                        onClick={e => setActiveMobileOverlay(null)}
+                        onClick={() => setActiveMobileOverlay(null)}
                       >
                         <ExternalLink size={20} />
                       </a>
@@ -156,7 +156,7 @@ const Projects = () => {
                         href={project.githubUrl}
                         className="p-2 bg-gray-700 rounded-full text-white font-semibold hover:bg-gray-600 focus:ring-4 focus:ring-purple-400 active:ring-4 active:ring-purple-400 active:scale-110 shadow-xl transition-all duration-300"
                         target="_blank" rel="noopener noreferrer"
-                        onClick={e => setActiveMobileOverlay(null)}
+                        onClick={() => setActiveMobileOverlay(null)}
                       >
                         <Github size={20} />
                       </a>
