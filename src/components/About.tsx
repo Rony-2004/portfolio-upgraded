@@ -1,4 +1,3 @@
-import React from 'react';
 import { Code, Palette, Zap } from 'lucide-react';
 import cPhoto from '../assets/c.jpg';
 
