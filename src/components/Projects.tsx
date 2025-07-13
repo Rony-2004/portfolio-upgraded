@@ -12,6 +12,7 @@ import img8 from '../assets/8.png';
 const Projects = () => {
   const [showAll, setShowAll] = useState(false);
   const [animateAll, setAnimateAll] = useState(false);
+  const [activeMobileOverlay, setActiveMobileOverlay] = useState<number | null>(null);
   const projects = [
     // 1st project
     {
@@ -85,7 +86,7 @@ const Projects = () => {
 
   return (
     <section id="projects" className="py-20 px-6 bg-gray-800/30">
-      <div className="container mx-auto">
+      <div className="container mx-auto" onClick={() => setActiveMobileOverlay(null)}>
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
             Featured Projects
@@ -96,71 +97,97 @@ const Projects = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {(showAll ? projects : projects.slice(0, 2)).map((project, index) => {
-            // For animation: only animate the extra projects
-            const isExtra = showAll && index >= 2;
-            return (
-              <div
-                key={index}
-                className={
-                  "group relative bg-gray-900/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700 hover:border-cyan-400 transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-400/20" +
-                  (isExtra ?
-                    ` transition-opacity transition-transform duration-700 ${animateAll ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}` :
-                    '')
+          {projects.map((project, index) => (
+            <div
+              key={index}
+              className="group relative bg-gray-900/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700 hover:border-cyan-400 transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-400/20 active:scale-95"
+              onClick={e => {
+                if (window.innerWidth < 768) {
+                  e.stopPropagation();
+                  setActiveMobileOverlay(activeMobileOverlay === index ? null : index);
                 }
-                style={isExtra ? { transitionDelay: `${(index - 2) * 100}ms` } : {}}
-              >
-                {/* Project Image */}
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-60"></div>
-                {/* Overlay Buttons */}
-                <div className="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  {project.liveUrl && (
-                    <a
-                      href={project.liveUrl}
-                      className="p-2 bg-cyan-500 rounded-full hover:bg-cyan-400 transition-colors duration-300"
-                      target="_blank" rel="noopener noreferrer"
-                    >
-                      <ExternalLink size={16} />
-                    </a>
-                  )}
-                  {project.githubUrl && (
-                    <a
-                      href={project.githubUrl}
-                      className="p-2 bg-gray-700 rounded-full hover:bg-gray-600 transition-colors duration-300"
-                      target="_blank" rel="noopener noreferrer"
-                    >
-                      <Github size={16} />
-                    </a>
-                  )}
-                </div>
-                {/* Project Content */}
-                <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-cyan-400 transition-colors duration-300">
-                  {project.title}
-                </h3>
-                <p className="text-gray-300 mb-4 leading-relaxed">
-                  {project.description}
-                </p>
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="px-3 py-1 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-400/30 rounded-full text-xs text-cyan-400"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                {/* Animated border effect */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-400 to-purple-500 opacity-0 group-hover:opacity-10 transition-opacity duration-500 -z-10"></div>
+              }}
+            >
+              {/* Project Image */}
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-60"></div>
+              {/* Overlay Buttons */}
+              {/* Desktop hover overlay */}
+              <div className="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 md:flex">
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    className="p-2 bg-cyan-500 rounded-full hover:bg-cyan-400 transition-colors duration-300 focus:ring-4 focus:ring-cyan-400 active:ring-4 active:ring-cyan-400 active:scale-110"
+                    target="_blank" rel="noopener noreferrer"
+                    onClick={e => e.stopPropagation()}
+                  >
+                    <ExternalLink size={16} className="transition-all duration-200 group-active:scale-125 group-active:text-white" />
+                  </a>
+                )}
+                {project.githubUrl && (
+                  <a
+                    href={project.githubUrl}
+                    className="p-2 bg-gray-700 rounded-full hover:bg-gray-600 transition-colors duration-300 focus:ring-4 focus:ring-purple-400 active:ring-4 active:ring-purple-400 active:scale-110"
+                    target="_blank" rel="noopener noreferrer"
+                    onClick={e => e.stopPropagation()}
+                  >
+                    <Github size={16} className="transition-all duration-200 group-active:scale-125 group-active:text-white" />
+                  </a>
+                )}
               </div>
-            );
-          })}
+              {/* Mobile tap overlay */}
+              {activeMobileOverlay === index && (
+                <div className="absolute top-4 right-4 z-30 md:hidden animate-fade-in" onClick={e => e.stopPropagation()}>
+                  <div className="flex gap-3 p-2 transition-all duration-300">
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        className="p-2 bg-cyan-500 rounded-full text-white font-semibold hover:bg-cyan-400 focus:ring-4 focus:ring-cyan-400 active:ring-4 active:ring-cyan-400 active:scale-110 shadow-xl transition-all duration-300"
+                        target="_blank" rel="noopener noreferrer"
+                        onClick={e => setActiveMobileOverlay(null)}
+                      >
+                        <ExternalLink size={20} />
+                      </a>
+                    )}
+                    {project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        className="p-2 bg-gray-700 rounded-full text-white font-semibold hover:bg-gray-600 focus:ring-4 focus:ring-purple-400 active:ring-4 active:ring-purple-400 active:scale-110 shadow-xl transition-all duration-300"
+                        target="_blank" rel="noopener noreferrer"
+                        onClick={e => setActiveMobileOverlay(null)}
+                      >
+                        <Github size={20} />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              )}
+              {/* Project Content */}
+              <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-cyan-400 transition-colors duration-300">
+                {project.title}
+              </h3>
+              <p className="text-gray-300 mb-4 leading-relaxed">
+                {project.description}
+              </p>
+              {/* Tech Stack */}
+              <div className="flex flex-wrap gap-2">
+                {project.tech.map((tech, techIndex) => (
+                  <span
+                    key={techIndex}
+                    className="px-3 py-1 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-400/30 rounded-full text-xs text-cyan-400"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+              {/* Animated border effect */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-400 to-purple-500 opacity-0 group-hover:opacity-10 transition-opacity duration-500 -z-10"></div>
+            </div>
+          ))}
         </div>
 
         {!showAll && (

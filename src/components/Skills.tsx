@@ -189,7 +189,7 @@ const Skills = () => {
             ].map((tech, index) => (
               <span
                 key={index}
-                className="px-4 py-2 bg-gradient-to-r from-gray-700 to-gray-800 border border-gray-600 rounded-full text-sm text-gray-300 hover:border-cyan-400 hover:text-cyan-400 transition-all duration-300 transform hover:scale-105 flex items-center"
+                className="px-4 py-2 bg-gradient-to-r from-gray-700 to-gray-800 border border-gray-600 rounded-full text-sm text-gray-300 hover:border-cyan-400 hover:text-cyan-400 transition-all duration-300 transform hover:scale-105 active:scale-95 active:bg-gradient-to-r active:from-cyan-500 active:to-purple-500 active:text-white flex items-center"
               >
                 {skillIcons[tech]}
                 {tech}
