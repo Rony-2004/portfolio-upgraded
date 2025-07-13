@@ -39,11 +39,12 @@ const Hero = () => {
         <div className="mb-8 animate-fade-in-up">
           <h1 className="relative text-5xl md:text-7xl font-bold mb-6 leading-tight">
             <span className="block bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-gradient">
-              Full Stack Devel
-              <span className="relative inline-block align-middle w-6 h-6 md:w-9 md:h-9 mx-1">
-                <span className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-bounce floating-element"></span>
+              Full Stack <span className="whitespace-nowrap">Devel
+                <span className="relative align-middle inline-block w-6 h-6 md:w-9 md:h-9 mx-1">
+                  <span className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-bounce floating-element"></span>
+                </span>
+                per
               </span>
-              per
             </span>
             <span className="block text-white text-3xl md:text-5xl mt-4">
               Building the Future
