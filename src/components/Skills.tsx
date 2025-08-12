@@ -49,38 +49,7 @@ const Skills = () => {
   }, []);
 
   // Tailwind color class to hex code mapping for SVG gradients
-  const colorMap: Record<string, string> = {
-    "from-blue-400": "#60a5fa",
-    "to-cyan-400": "#22d3ee",
-    "from-yellow-400": "#facc15",
-    "to-orange-400": "#fb923c",
-    "from-green-400": "#4ade80",
-    "to-emerald-400": "#34d399",
-    "from-pink-400": "#f472b6",
-    "to-red-400": "#f87171",
-    "from-red-400": "#f87171",
-    "to-red-700": "#b91c1c",
-    "from-blue-700": "#1d4ed8",
-    "from-blue-900": "#1e3a8a",
-    "from-purple-400": "#a78bfa",
-    "to-pink-400": "#f472b6",
-    "from-cyan-400": "#22d3ee",
-    "to-blue-400": "#60a5fa",
-    "from-gray-400": "#9ca3af",
-    "to-gray-600": "#4b5563",
-    "from-green-600": "#16a34a",
-    "from-blue-600": "#2563eb",
-    "to-blue-600": "#2563eb",
-    "from-blue-800": "#1e40af",
-    "from-gray-800": "#1f2937",
-    "to-black": "#000000",
-    "from-gray-700": "#374151",
-    "to-gray-900": "#111827",
-    "from-indigo-400": "#818cf8",
-    "from-purple-500": "#8b5cf6",
-    "from-green-500": "#22c55e",
-    "to-green-900": "#14532d",
-  };
+
 
   const skillIcons: Record<string, React.ReactNode> = {
     'C': <FaCode className="inline mr-1" />,
