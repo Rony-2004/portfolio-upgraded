@@ -1,10 +1,11 @@
 import React from 'react';
-import { FaCode } from 'react-icons/fa';
-import { SiPython, SiHtml5, SiCss3, SiJavascript, SiTypescript, SiReact, SiNodedotjs, SiExpress, SiMongodb, SiMysql, SiPostgresql, SiPrisma, SiFirebase, SiGooglecloud, SiKubernetes, SiDocker, SiJenkins, SiGit, SiGithub, SiFigma, SiAdobephotoshop, SiLinux } from 'react-icons/si';
+import { FaJava, FaCode } from 'react-icons/fa';
+
+import { SiPython, SiHtml5, SiCss3, SiJavascript, SiTypescript, SiReact, SiNodedotjs, SiExpress, SiMongodb, SiMysql, SiPostgresql, SiPrisma, SiFirebase, SiGooglecloud, SiKubernetes, SiDocker, SiJenkins, SiGit, SiGithub, SiFigma, SiAdobephotoshop, SiLinux, SiGrafana } from 'react-icons/si';
 
 const Skills = () => {
   const sectionRef = React.useRef<HTMLElement>(null);
-
+ 
   const skillsAndTools = [
     { name: "Java", color: "from-yellow-400 to-orange-400" },
     { name: "Python", color: "from-green-400 to-emerald-400" },
@@ -24,11 +25,10 @@ const Skills = () => {
     { name: "Jenkins", color: "from-red-400 to-red-700" },
     { name: "Git", color: "from-orange-400 to-yellow-400" },
     { name: "GitHub", color: "from-gray-800 to-black" },
-    { name: "VS Code", color: "from-blue-400 to-indigo-400" },
+    { name: "Grafana", color: "from-orange-400 to-yellow-400" },
     { name: "Figma", color: "from-pink-400 to-purple-400" },
     { name: "Photoshop", color: "from-blue-400 to-blue-900" },
     { name: "Linux", color: "from-green-500 to-green-900" },
-    { name: "Unreal Engine", color: "from-green-400 to-blue-900" }
   ];
 
   React.useEffect(() => {
@@ -52,9 +52,9 @@ const Skills = () => {
 
 
   const skillIcons: Record<string, React.ReactNode> = {
-    'C': <FaCode className="inline mr-1" />,
-    'Java': <FaCode className="inline mr-1" />,
-    'Python': <SiPython className="inline mr-1" />,
+    'C': <FaCode className="inline mr-1" />, 
+    'Java': <FaJava className="inline" />, 
+    'Python': <SiPython className="inline mr-1" />, 
     'HTML': <SiHtml5 className="inline mr-1" />,
     'CSS': <SiCss3 className="inline mr-1" />,
     'JavaScript': <SiJavascript className="inline mr-1" />,
@@ -73,7 +73,7 @@ const Skills = () => {
     'Jenkins': <SiJenkins className="inline mr-1" />,
     'Git': <SiGit className="inline mr-1" />,
     'GitHub': <SiGithub className="inline mr-1" />,
-    'VS Code': <FaCode className="inline mr-1" />,
+  'Grafana': <SiGrafana className="inline mr-1" />, 
     'Figma': <SiFigma className="inline mr-1" />,
     'Photoshop': <SiAdobephotoshop className="inline mr-1" />,
     'Linux': <SiLinux className="inline mr-1" />,
@@ -92,22 +92,15 @@ const Skills = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div className="flex flex-wrap justify-center items-center gap-4 max-w-3xl mx-auto">
           {skillsAndTools.map((item, index) => (
             <div
               key={index}
-              className="group flex items-center bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-5 shadow-xl hover:shadow-cyan-400/30 hover:border-cyan-400 transition-all duration-300 min-h-[80px]"
+              className="group flex items-center justify-center bg-white/10 backdrop-blur-lg border border-white/20 rounded-full shadow hover:shadow-cyan-400/30 hover:border-cyan-400 transition-all duration-300 w-16 h-16 sm:w-20 sm:h-20 cursor-pointer animate-bounce-once hover:animate-bounce aspect-square"
             >
-              <div className="flex-shrink-0 w-14 h-14 flex items-center justify-center rounded-full bg-gray-900/70 mr-5 shadow-md">
-                <span className="text-3xl text-white drop-shadow-lg">
-                  {skillIcons[item.name.replace('/CSS', '')] || <FaCode />}
-                </span>
-              </div>
-              <div className="flex-1">
-                <span className="text-base font-semibold text-white group-hover:text-cyan-400 transition-colors duration-300">
-                  {item.name}
-                </span>
-              </div>
+              <span className="flex items-center justify-center text-2xl sm:text-3xl text-white drop-shadow-lg">
+                {skillIcons[item.name.replace('/CSS', '')] || <FaCode />}
+              </span>
             </div>
           ))}
         </div>
