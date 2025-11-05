@@ -5,13 +5,17 @@ import { DotGothic16, Press_Start_2P } from 'next/font/google';
 const dotGothic = DotGothic16({ 
   weight: '400',
   subsets: ['latin'],
-  variable: '--font-dotgothic'
+  variable: '--font-dotgothic',
+  display: 'swap',
+  fallback: ['system-ui', 'arial']
 });
 
 const pressStart = Press_Start_2P({ 
   weight: '400',
   subsets: ['latin'],
-  variable: '--font-press-start'
+  variable: '--font-press-start',
+  display: 'swap',
+  fallback: ['monospace', 'courier']
 });
 
 export const metadata: Metadata = {
